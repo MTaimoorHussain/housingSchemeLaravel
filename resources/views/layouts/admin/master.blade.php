@@ -69,7 +69,7 @@
 </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -96,7 +96,7 @@
             <img src={{asset("public/adminlte/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">{{ucfirst(auth()->user()->name)}}</a>
           </div>
         </div>
 
