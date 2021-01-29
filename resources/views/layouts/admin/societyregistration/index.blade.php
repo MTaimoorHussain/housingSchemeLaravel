@@ -39,7 +39,7 @@
 <!-- End Container -->
 
 <div id="form_modal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header" style="display: block;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -51,26 +51,63 @@
           @csrf
 
           <div class="CarryInput" style="display: flex;">
-
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="slug" id="slug" class="input" required />
-              <label for="slug" id="label">Code : </label>
+              <input type="text" name="name" id="name" class="form-control input" required />
+              <label for="name" id="label">Name</label>
             </div>
 
-
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="name" id="name" class="input" required />
-              <label for="name" id="label">Bank : </label>
+              <input type="text" name="slug" id="slug" class="form-control input" required />
+              <label for="slug" id="label">Short Name</label>
+            </div>
+          </div>
+
+          <div class="CarryInput" style="display: flex;">
+            <div class="input-field col-md-12 col-sm-12 col-lg-12">
+              <input type="text" name="address" id="address" class="form-control input" required />
+              <label for="address" id="label">Address</label>
+            </div>
+          </div>
+
+          <div class="CarryInput" style="display: flex;">
+            <div class="input-field col-md-6 col-sm-6 col-lg-6">
+              <input type="text" name="registration_no" id="registration_no" class="form-control input" required />
+              <label for="registration_no" id="label">Registration No#</label>
             </div>
 
+            <div class="input-field col-md-6 col-sm-6 col-lg-6">
+              <input type="date" name="registration_date" id="registration_date" class="form-control input" required />
+            </div>
+          </div>
+
+          <div class="CarryInput" style="display: flex;">
+            <div class="input-field col-md-4 col-sm-4 col-lg-4">
+              <select type="text" name="country" id="country" class="form-control input" required>
+                <option value="" selected="" disabled="">Select Country</option>
+              </select>
+            </div>
+
+            <div class="input-field col-md-4 col-sm-4 col-lg-4">
+              <select type="text" name="state" id="state" class="form-control input" required>
+                <option value="" selected="" disabled="">Select State</option>
+              </select>
+            </div>
+
+            <div class="input-field col-md-4 col-sm-4 col-lg-4">
+              <select type="text" name="city" id="city" class="form-control input" required>
+                <option value="" selected="" disabled="">Select City</option>
+              </select>
+            </div>
           </div>
 
           <br />
-          <div class="form-group addButton" align="center">
-            <input type="hidden" name="action" id="action" value="Add" />
-            <input type="hidden" name="hidden_id" id="hidden_id" />
-            <input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
-            <input type="submit" name="action_button" id="action_button" class="btn btn-success" value="Add" />
+          <div class="modal-footer">
+            <div class="form-group addButton" align="center">
+              <input type="hidden" name="action" id="action" value="Add" />
+              <input type="hidden" name="hidden_id" id="hidden_id" />
+              <input type="button" class="btn btn-default" value="Close" data-dismiss="modal"/>
+              <input type="submit" name="action_button" id="action_button" class="btn btn-success" value="Add" />
+            </div>
           </div>
         </form>
       </div>
@@ -139,8 +176,8 @@
     {
       $('#name').val('');
       $('.modal-title').text('Add Society Information');
-      $('#action_button').val('Add');
-      $('#action').val('Submit');
+      $('#action_button').val('Submit');
+      $('#action').val('Add');
       $('#form_result').html('');
       $('#form_modal').modal('show');
     }
