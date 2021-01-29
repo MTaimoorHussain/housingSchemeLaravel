@@ -100,138 +100,154 @@
           </div>
         </div>
 
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
+              with font-awesome or any other icon font library -->
+              <li class="nav-item">
+                <a href="dashboard" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt color-gray"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-registered"></i>
+                  <p>
+                    Society Registration
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="society_registration" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Registration</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
 
-             <li class="nav-item">
-              <a href="dashboard" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt color-gray"></i>
-                <p>Dashboard</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-cubes"></i>
-                <p>
-                  Society Setup
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="allbank" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Banks Listing</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="bankdetail" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Society Banks</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="chargetype" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Charges Listing</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="charge" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Society Charges</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="plotcategory" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Plot Categories</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="plottype" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Plot Type</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="block" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Blocks</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="societylayoutplan" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Society layout Plan</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-file"></i>
-                <p>
-                  Tender Management
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="tender" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Tender</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-cubes"></i>
+                  <p>
+                    Society Setup
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="allbank" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Banks Listing</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="bankdetail" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Society Banks</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="chargetype" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Charges Listing</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="charge" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Society Charges</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="plotcategory" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Plot Categories</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="plottype" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Plot Type</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="block" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Blocks</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="societylayoutplan" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Society layout Plan</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>
+                    Tender Management
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="tender" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Tender</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
 
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <div class="content">
-        <div class="container-fluid">
-          @yield('content')
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="container-fluid">
+            @yield('content')
+          </div>
         </div>
       </div>
-    </div>
-    <!-- /.content-wrapper -->
+      <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Main Footer -->
-  </div>
-  <!-- ./wrapper -->
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  {{-- <script src={{asset("public/adminlte/plugins/jquery/jquery.min.js")}}></script> --}}
-  <!-- Bootstrap -->
-  <script src={{asset("public/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js")}}></script>
-  <!-- overlayScrollbars -->
-  <script src={{asset("public/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
-  <!-- AdminLTE App -->
-  <script src={{asset("public/adminlte/dist/js/adminlte.js")}}></script>
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src={{asset("public/adminlte/plugins/jquery-mousewheel/jquery.mousewheel.js")}}></script>
-  <script src={{asset("public/adminlte/plugins/raphael/raphael.min.js")}}></script>
-  <script src={{asset("public/adminlte/plugins/jquery-mapael/jquery.mapael.min.js")}}></script>
-  <script src={{asset("public/adminlte/plugins/jquery-mapael/maps/usa_states.min.js")}}></script>
-  <!-- ChartJS -->
-  <script src={{asset("public/adminlte/plugins/chart.js/Chart.min.js")}}></script>
-</body>
-</html>
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+      <!-- Main Footer -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- <script src={{asset("public/adminlte/plugins/jquery/jquery.min.js")}}></script> --}}
+    <!-- Bootstrap -->
+    <script src={{asset("public/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js")}}></script>
+    <!-- overlayScrollbars -->
+    <script src={{asset("public/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
+    <!-- AdminLTE App -->
+    <script src={{asset("public/adminlte/dist/js/adminlte.js")}}></script>
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src={{asset("public/adminlte/plugins/jquery-mousewheel/jquery.mousewheel.js")}}></script>
+    <script src={{asset("public/adminlte/plugins/raphael/raphael.min.js")}}></script>
+    <script src={{asset("public/adminlte/plugins/jquery-mapael/jquery.mapael.min.js")}}></script>
+    <script src={{asset("public/adminlte/plugins/jquery-mapael/maps/usa_states.min.js")}}></script>
+    <!-- ChartJS -->
+    <script src={{asset("public/adminlte/plugins/chart.js/Chart.min.js")}}></script>
+  </body>
+  </html>

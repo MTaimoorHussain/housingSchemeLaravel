@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\AllBank;
 use Illuminate\Http\Request;
-use DataTables;
+
 use Validator;
+use DataTables;
 
+use App\Models\Admin\SocietyRegistration;
 
-class AllBankController extends Controller
+class SocietyRegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class AllBankController extends Controller
     {
         if($request->ajax())
         {
-            $data = AllBank::latest()->get();
+            $data = SocietyRegistration::latest()->get();
             return DataTables::of($data)
             ->addColumn('action', function($data){
                 $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
@@ -29,7 +30,7 @@ class AllBankController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('layouts.admin.societySetup.allbank');
+        return view('layouts.admin.societyregistration.registration');
     }
 
     /**
@@ -50,26 +51,7 @@ class AllBankController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'slug'    =>  'required',
-            'name'     =>  'required'
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        $form_data = array(
-            'slug'        =>  $request->slug,
-            'name'         =>  $request->name
-        );
-
-        AllBank::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
+        //
     }
 
     /**
@@ -91,11 +73,7 @@ class AllBankController extends Controller
      */
     public function edit($id)
     {
-        if(request()->ajax())
-        {
-            $data = AllBank::findOrFail($id);
-            return response()->json(['result' => $data]);
-        }
+        //
     }
 
     /**
@@ -105,28 +83,9 @@ class AllBankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $rules = array(
-            'slug'        =>  'required',
-            'name'         =>  'required'
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        $form_data = array(
-            'slug'    =>  $request->slug,
-            'name'     =>  $request->name
-        );
-
-        AllBank::whereId($request->hidden_id)->update($form_data);
-
-        return response()->json(['success' => 'Data is successfully updated']);
+        //
     }
 
     /**
@@ -137,8 +96,6 @@ class AllBankController extends Controller
      */
     public function destroy($id)
     {
-        $data = AllBank::findOrFail($id);
-        $data->delete();
-
+        //
     }
 }
