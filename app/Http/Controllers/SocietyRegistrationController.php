@@ -8,6 +8,9 @@ use DataTables;
 use Validator;
 
 use App\Models\Admin\SocietyRegistration;
+use App\Models\Admin\Country;
+use App\Models\Admin\State;
+use App\Models\Admin\City;
 
 class SocietyRegistrationController extends Controller
 {
@@ -23,14 +26,16 @@ class SocietyRegistrationController extends Controller
             $data = SocietyRegistration::latest()->get();
             return DataTables::of($data)
             ->addColumn('action', function($data){
-                $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
-                $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
+                $button = '<button type="button" name="edit" id="'.$data->id.'" class="btn-warning edit action"><i class="fa fa-edit"></i></button>';
+                $button .= '<button type="button" name="edit" id="'.$data->id.'" class="btn-danger delete action"><i class="fa fa-trash"></i></button>';
                 return $button;
             })
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('layouts.admin.societyregistration.index');
+        $data = SocietyRegistration::first();
+        $countries = Country::orderBy('id','ASC')->get();
+        return view('layouts.admin.societyregistration.index',compact('countries','data'));
     }
 
     /**
@@ -51,7 +56,43 @@ class SocietyRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'slug' => 'required',
+            'address' => 'required',
+            'registration_no' => 'required',
+            'registration_date' => 'required',
+            'country' => 'required',
+            'state' => 'required',
+            'city' => 'required'
+        ];
+        $messages = array(
+            'name.required' => 'The name field is required.',
+            'slug.required' => 'The short name field is required.',
+            'address.required' => 'The address field is required.',
+            'registration_no.required' => 'The registration no# field is required.',
+            'registration_date.required' => 'The registration date field is required.',
+            'country.required' => 'The country field is required.',
+            'state.required' => 'The state field is required.',
+            'city.required' => 'The city field is required.',
+        );
+        $error = Validator::make($request->all(), $rules, $messages);
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+        $form_data = [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'address' => $request->address,
+            'registration_no' => $request->registration_no,
+            'registration_date' => $request->registration_date,
+            'country_id' => $request->country,
+            'state_id' => $request->state,
+            'city_id' => $request->city
+        ];
+        SocietyRegistration::create($form_data);
+        return response()->json(['added' => 'Data successfully added.']);
     }
 
     /**
@@ -73,7 +114,11 @@ class SocietyRegistrationController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(request()->ajax())
+        {
+            $data = SocietyRegistration::findOrFail($id);
+            return response()->json(['result' => $data]);
+        }
     }
 
     /**
@@ -83,9 +128,45 @@ class SocietyRegistrationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'slug' => 'required',
+            'address' => 'required',
+            'registration_no' => 'required',
+            'registration_date' => 'required',
+            'country' => 'required',
+            'state' => 'required',
+            'city' => 'required'
+        ];
+        $messages = array(
+            'name.required' => 'The name field is required.',
+            'slug.required' => 'The short name field is required.',
+            'address.required' => 'The address field is required.',
+            'registration_no.required' => 'The registration no# field is required.',
+            'registration_date.required' => 'The registration date field is required.',
+            'country.required' => 'The country field is required.',
+            'state.required' => 'The state field is required.',
+            'city.required' => 'The city field is required.',
+        );
+        $error = Validator::make($request->all(), $rules, $messages);
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+        $form_data = [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'address' => $request->address,
+            'registration_no' => $request->registration_no,
+            'registration_date' => $request->registration_date,
+            'country_id' => $request->country,
+            'state_id' => $request->state,
+            'city_id' => $request->city
+        ];
+        SocietyRegistration::whereId($request->hidden_id)->update($form_data);
+        return response()->json(['updated' => 'Data successfully updated']);
     }
 
     /**
@@ -96,6 +177,36 @@ class SocietyRegistrationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SocietyRegistration::findOrFail($id)->delete();
+    }
+
+    /**
+     * Custom function to overview the roster from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_states(Request $request)
+    {   
+        $state = State::where('country_id',$request->country_id)
+        ->select('*')
+        ->orderBy('id','ASC')
+        ->get();
+        return response()->json($state, 200);
+    }
+
+    /**
+     * Custom function to overview the roster from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_cities(Request $request)
+    {   
+        $city = City::where('state_id',$request->state_id)
+        ->select('*')
+        ->orderBy('id','ASC')
+        ->get();
+        return response()->json($city, 200);
     }
 }

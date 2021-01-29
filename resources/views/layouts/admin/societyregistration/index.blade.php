@@ -10,7 +10,9 @@
       <div class="card-header">
         <div align="right" style="padding-top: 2% !important">
           <h3 class="card-title">Society Information</h3>
+          @if(empty($data))
           <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Registration Form</button>
+          @endif
         </div>
       </div>
       <br>
@@ -52,49 +54,52 @@
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="name" id="name" class="form-control input" required />
+              <input type="text" name="name" id="name" class="form-control input"/>
               <label for="name" id="label">Name</label>
             </div>
 
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="slug" id="slug" class="form-control input" required />
+              <input type="text" name="slug" id="slug" class="form-control input"/>
               <label for="slug" id="label">Short Name</label>
             </div>
           </div>
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-12 col-sm-12 col-lg-12">
-              <input type="text" name="address" id="address" class="form-control input" required />
+              <input type="text" name="address" id="address" class="form-control input"/>
               <label for="address" id="label">Address</label>
             </div>
           </div>
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="registration_no" id="registration_no" class="form-control input" required />
+              <input type="text" name="registration_no" id="registration_no" class="form-control input"/>
               <label for="registration_no" id="label">Registration No#</label>
             </div>
 
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="date" name="registration_date" id="registration_date" class="form-control input" required />
+              <input type="date" name="registration_date" id="registration_date" class="form-control input"/>
             </div>
           </div>
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
-              <select type="text" name="country" id="country" class="form-control input" required>
+              <select type="text" name="country" id="country" class="form-control input">
                 <option value="" selected="" disabled="">Select Country</option>
+                @foreach($countries as $country)
+                <option value="{{$country->id}}">{{$country->name}}</option>
+                @endforeach
               </select>
             </div>
 
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
-              <select type="text" name="state" id="state" class="form-control input" required>
+              <select type="text" name="state" id="state" class="form-control input">
                 <option value="" selected="" disabled="">Select State</option>
               </select>
             </div>
 
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
-              <select type="text" name="city" id="city" class="form-control input" required>
+              <select type="text" name="city" id="city" class="form-control input">
                 <option value="" selected="" disabled="">Select City</option>
               </select>
             </div>
@@ -119,7 +124,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="display: block;">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close delete_close" data-dismiss="modal">&times;</button>
         <h2 class="modal-heading">Confirmation</h2>
       </div>
       <div class="modal-body">
@@ -127,7 +132,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -143,6 +148,8 @@
     {
       processing: true,
       serverSide: true,
+      searching: false,
+      
       ajax: 
       {
         url: "{{ route('society_registration.index') }}",
@@ -188,27 +195,13 @@
       var action_url = '';
       if($('#action').val() == 'Add')
       {
-        var action_url = "{{ route('society_registration.store') }}";
-        $("#form_modal").modal("hide");
-        Swal.fire(
-          "Added!",
-          "Society Information successfully Added.",
-          "success"
-          );
+        action_url = "{{ route('society_registration.store') }}";
       }
       if($('#action').val() == 'Edit')
       {
-        var action_url = "{{ route('society_registration.update') }}";
-        $("#form_modal").modal("hide");
-        Swal.fire(
-          "Updated!",
-          "Society Information successfully updated.",
-          "success"
-          );
+        action_url = "{{ route('society_registration.update') }}";
       }
-
-      $.ajax(
-      {
+      $.ajax({
         url: action_url,
         method:"POST",
         data:$(this).serialize(),
@@ -225,15 +218,31 @@
             }
             html += '</div>';
           }
-          if(data.success)
+          if(data.added)
           {
             $('#registration_form')[0].reset();
             $('#table').DataTable().ajax.reload();
+            $('#form_modal').modal('hide'); 
+            Swal.fire(
+              "Added!",
+              "Society information successfully added.",
+              "success"
+              );
+          }
+          if(data.updated)
+          {
+            $('#registration_form')[0].reset();
+            $('#table').DataTable().ajax.reload();
+            $('#form_modal').modal('hide'); 
+            Swal.fire(
+              "Updated!",
+              "Society information successfully updated.",
+              "success"
+              );
           }
           $('#form_result').html(html);
         }
-      }
-      );
+      });
     }
     );
     $(document).on('click', '.edit', function()
@@ -247,9 +256,14 @@
         success:function(data)
         {
           $('#name').val(data.result.name);
+          $('#slug').val(data.result.slug);
+          $('#address').val(data.result.address);
+          $('#registration_no').val(data.result.registration_no);
+          $('#registration_date').val(data.result.registration_date);
+          // $('#country').val(data.result.country_id);
           $('#hidden_id').val(id);
-          $('.modal-title').text('Edit Record');
-          $('#action_button').val('Edit');
+          $('.modal-title').text('Edit Society Information');
+          $('#action_button').val('Update');
           $('#action').val('Edit');
           $('#form_modal').modal('show');
         }
@@ -271,22 +285,78 @@
       beforeSend:function()
       {
         $('#ok_button').text('Deleting...');
+        $('#ok_button').prop("disabled",true);
+        $('.cancel').prop("disabled",true);
+        $('.delete_close').hide();
+
       },
       success:function(data)
       {
         setTimeout(function(){
           $('#confirmModal').modal('hide');
           $('#ok_button').text('OK');
+          $('#ok_button').prop("disabled",false);
+          $('.cancel').prop("disabled",false);
+          $('.delete_close').show();
           $('#table').DataTable().ajax.reload();
           Swal.fire(
            "Deleted!",
-           "Society Information successfully Deleted.",
+           "Society information successfully deleted.",
            "success"
            );
         }, 2000);
       }
     })
    });
+    
+    $('#country').on('change',function(){
+      var country_id = $(this).val();
+
+      $.ajax({
+        url: '{{ route("get_states") }}',
+        type: 'POST',
+        data:
+        {
+          "_token": "{{ csrf_token() }}",
+          "country_id": country_id
+        },
+        success: function(response)
+        {
+          $("#state").empty();
+          $("#state").append("<option value='' disabled='' selected=''>Select State</option>");
+
+          $.each(response, function(index, obj){
+            $("#state").append("<option value="+response[index].id+">"+response[index].name+"</option>");
+          });
+        }
+      });
+
+    });
+
+    $('#state').on('change',function(){
+      var state_id = $(this).val();
+
+      $.ajax({
+        url: '{{ route("get_cities") }}',
+        type: 'POST',
+        data:
+        {
+          "_token": "{{ csrf_token() }}",
+          "state_id": state_id
+        },
+        success: function(response)
+        {
+          $("#city").empty();
+          $("#city").append("<option value='' disabled='' selected=''>Select City</option>");
+
+          $.each(response, function(index, obj){
+            $("#city").append("<option value="+response[index].id+">"+response[index].name+"</option>");
+          });
+        }
+      });
+
+    });
+
   });
 </script>
 @endsection

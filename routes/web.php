@@ -24,6 +24,8 @@ Route::resource('society_registration', 'SocietyRegistrationController');
 Route::post('society_registration/update', 'SocietyRegistrationController@update')->name('society_registration.update');
 Route::get('society_registration/edit/{id}', 'SocietyRegistrationController@edit');
 Route::get('society_registration/destroy/{id}', 'SocietyRegistrationController@destroy');
+Route::post('get_states', 'SocietyRegistrationController@get_states')->name('get_states');
+Route::post('get_cities', 'SocietyRegistrationController@get_cities')->name('get_cities');
 
 Route::resource('allbank', 'AllBankController');
 Route::post('allbank/update', 'AllBankController@update')->name('allbank.update');
