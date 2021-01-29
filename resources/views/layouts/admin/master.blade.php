@@ -113,6 +113,25 @@
                 <p>Dashboard</p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-registered"></i>
+                <p>
+                  Society Registration
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="society_registration" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Society Registration</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-cubes"></i>
