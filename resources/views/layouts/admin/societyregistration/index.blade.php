@@ -54,37 +54,37 @@
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="name" id="name" class="form-control input"/>
+              <input type="text" name="name" id="name" class="form-control input" required="" />
               <label for="name" id="label">Name</label>
             </div>
 
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="slug" id="slug" class="form-control input"/>
+              <input type="text" name="slug" id="slug" class="form-control input" required=""/>
               <label for="slug" id="label">Short Name</label>
             </div>
           </div>
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-12 col-sm-12 col-lg-12">
-              <input type="text" name="address" id="address" class="form-control input"/>
+              <input type="text" name="address" id="address" class="form-control input" required=""/>
               <label for="address" id="label">Address</label>
             </div>
           </div>
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="registration_no" id="registration_no" class="form-control input"/>
+              <input type="text" name="registration_no" id="registration_no" class="form-control input" required=""/>
               <label for="registration_no" id="label">Registration No#</label>
             </div>
 
             <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="date" name="registration_date" id="registration_date" class="form-control input"/>
+              <input type="date" name="registration_date" id="registration_date" class="form-control input" required=""/>
             </div>
           </div>
 
           <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
-              <select type="text" name="country" id="country" class="form-control input">
+              <select type="text" name="country" id="country" class="form-control input" required="">
                 <option value="" selected="" disabled="">Select Country</option>
                 @foreach($countries as $country)
                 <option value="{{$country->id}}">{{$country->name}}</option>
@@ -93,13 +93,13 @@
             </div>
 
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
-              <select type="text" name="state" id="state" class="form-control input">
+              <select type="text" name="state" id="state" class="form-control input" required="">
                 <option value="" selected="" disabled="">Select State</option>
               </select>
             </div>
 
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
-              <select type="text" name="city" id="city" class="form-control input">
+              <select type="text" name="city" id="city" class="form-control input" required="">
                 <option value="" selected="" disabled="">Select City</option>
               </select>
             </div>

@@ -57,18 +57,18 @@
               <label for="companyName" id="label">Company Name : </label>
             </div>
 
-          
+            
 
           </div>
 
           <div class="CarryInput">
 
-          <div class="input-field col-md-12 col-sm-12 col-lg-12">
-            <select name="bankName" id="bankName" class="input form-control">
-              @foreach ($bankNames as $bankName)
+            <div class="input-field col-md-12 col-sm-12 col-lg-12">
+              <select name="bankName" id="bankName" class="input form-control">
+                @foreach ($bankNames as $bankName)
                 <option>{{$bankName->name}}</option>
-              @endforeach
-            </select>
+                @endforeach
+              </select>
             </div>
 
           </div>  
@@ -114,28 +114,28 @@
     serverSide: true,
     ajax: {
      url: "{{ route('bankdetail.index') }}",
-    },
-    columns: [
-     {
-      data: 'accountNumber',
-      name: 'accountNumber'
-     },
-     {
-      data: 'bankName',
-      name: 'bankName'
-     },
-     {
-      data: 'companyName',
-      name: 'companyName'
-     },
-     {
-      data: 'action',
-      name: 'action',
-      orderable: false
-     }
-    ]
-   });
-  
+   },
+   columns: [
+   {
+    data: 'accountNumber',
+    name: 'accountNumber'
+  },
+  {
+    data: 'bankName',
+    name: 'bankName'
+  },
+  {
+    data: 'companyName',
+    name: 'companyName'
+  },
+  {
+    data: 'action',
+    name: 'action',
+    orderable: false
+  }
+  ]
+});
+   
    $('#create_record').click(function(){
     $('#accountNumber').val('');
     $('#bankName').val('');
@@ -144,75 +144,75 @@
     $('#action_button').val('Add');
     $('#action').val('Add');
     $('#form_result').html('');
-  
+    
     $('#formModal').modal('show');
-   });
-  
+  });
+   
    $('#bankdetail_form').on('submit', function(event){
     event.preventDefault();
     var action_url = '';
-  
+    
     if($('#action').val() == 'Add')
     {
      var action_url = "{{ route('bankdetail.store') }}";
   //    alert(action_url);
   $("#formModal").modal("hide");
-              Swal.fire(
-              "Added!",
-              "Society Banks successfully Added.",
-              "success"
-              );
-    }
+  Swal.fire(
+    "Added!",
+    "Society Banks successfully Added.",
+    "success"
+    );
+}
+
+if($('#action').val() == 'Edit')
+{
+ var action_url = "{{ route('bankdetail.update') }}";
+ $("#formModal").modal("hide");
+ Swal.fire(
+  "Updated!",
+  "Society Banks successfully updated.",
+  "success"
+  );
+}
+
+$.ajax({
+ url: action_url,
+ method:"POST",
+ data:$(this).serialize(),
+ dataType:"json",
+ success:function(data)
+ {
+  var html = '';
+  if(data.errors)
+  {
+   html = '<div class="alert alert-danger">';
+   for(var count = 0; count < data.errors.length; count++)
+   {
+    html += '<p>' + data.errors[count] + '</p>';
+  }
+  html += '</div>';
+}
+if(data.success)
+{
   
-    if($('#action').val() == 'Edit')
-    {
-     var action_url = "{{ route('bankdetail.update') }}";
-     $("#formModal").modal("hide");
-              Swal.fire(
-              "Updated!",
-              "Society Banks successfully updated.",
-              "success"
-              );
-    }
   
-    $.ajax({
-     url: action_url,
-     method:"POST",
-     data:$(this).serialize(),
-     dataType:"json",
-     success:function(data)
-     {
-      var html = '';
-      if(data.errors)
-      {
-       html = '<div class="alert alert-danger">';
-       for(var count = 0; count < data.errors.length; count++)
-       {
-        html += '<p>' + data.errors[count] + '</p>';
-       }
-       html += '</div>';
-      }
-      if(data.success)
-      {
-  
-      
-       $('#bankdetail_form')[0].reset();
-       $('#user_table').DataTable().ajax.reload();
-      }
-      $('#form_result').html(html);
-     }
-    });
-   });
-  
+ $('#bankdetail_form')[0].reset();
+ $('#user_table').DataTable().ajax.reload();
+}
+$('#form_result').html(html);
+}
+});
+});
+   
    $(document).on('click', '.edit', function(){
     var id = $(this).attr('id');
   //   alert(id);
-    $('#form_result').html('');
-    $.ajax({
-      url:"bankdetail/edit/"+id,
-     dataType:"json",
-     success:function(data)
-     {
+  $('#form_result').html('');
+  $.ajax({
+    url:"bankdetail/edit/"+id,
+    dataType:"json",
+    success:function(data)
+    {
       $('#accountNumber').val(data.result.accountNumber);
       $('#bankName').val(data.result.bankName);
       $('#companyName').val(data.result.companyName);
@@ -221,48 +221,48 @@
       $('#action_button').val('Edit');
       $('#action').val('Edit');
       $('#formModal').modal('show');
-     }
-    })
+    }
+  })
+});
+   
+   
+
+   
+   var user_id;
+
+
+   $(document).on('click', '.delete', function(){
+     user_id = $(this).attr('id');
+     $('#confirmModal').modal('show');
    });
-  
-  
 
-  
-    var user_id;
+   $('#ok_button').click(function(){
+     $.ajax({
+      url:"bankdetail/destroy/"+user_id,
+      beforeSend:function(){
+       $('#ok_button').text('Deleting...');
+     },
+     success:function(data)
+     {
+       setTimeout(function(){
 
+        $('#confirmModal').modal('hide');
+        $('#ok_button').text('OK');
+        $('#user_table').DataTable().ajax.reload();
+        Swal.fire(
+         "Deleted!",
+         "Society Banks successfully Deleted.",
+         "success"
+         );
 
-$(document).on('click', '.delete', function(){
- user_id = $(this).attr('id');
- $('#confirmModal').modal('show');
-});
-
-$('#ok_button').click(function(){
- $.ajax({
-  url:"bankdetail/destroy/"+user_id,
-  beforeSend:function(){
-   $('#ok_button').text('Deleting...');
-   },
-  success:function(data)
-  {
-   setTimeout(function(){
-
-    $('#confirmModal').modal('hide');
-    $('#ok_button').text('OK');
-    $('#user_table').DataTable().ajax.reload();
-    Swal.fire(
-           "Deleted!",
-           "Society Banks successfully Deleted.",
-           "success"
-           );
-
-    
-     }, 2000);
-  }
- })
-});
-  
-  
-  
-  });
+        
+      }, 2000);
+     }
+   })
+   });
+   
+   
+   
+ });
 </script>
 @endsection
