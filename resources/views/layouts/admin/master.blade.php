@@ -69,7 +69,7 @@
 </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -78,7 +78,26 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+          </div>
+      </li>
       </ul>
+
+      
     </nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
@@ -96,7 +115,7 @@
             <img src={{asset("public/adminlte/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">{{ucfirst(auth()->user()->name)}}</a>
+            <a href="#" class="d-block">Alexander Pierce</a>
           </div>
         </div>
 
@@ -129,6 +148,7 @@
                 </ul>
               </li>
 
+<<<<<<< HEAD
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-cubes"></i>
@@ -205,6 +225,96 @@
                   </li>
                 </ul>
               </li>
+=======
+             <li class="nav-item">
+              <a href="dashboard" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt color-gray"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cubes"></i>
+                <p>
+                  Society Setup
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="allbank" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Banks Listing</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="bankdetail" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Society Banks</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="chargetype" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Charges Listing</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="charge" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Society Charges</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="plottype" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Plot Type</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="plotcategory" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Plot Categories</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="plotcategoryfee" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Plot Category Fee</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="block" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Blocks</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="societylayoutplan" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Society layout Plan</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p>
+                  Tender Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="tender" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tender</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+>>>>>>> 9cd9d180eb4d44e984f3f5ed691b72529d03b4bb
 
             </ul>
           </nav>

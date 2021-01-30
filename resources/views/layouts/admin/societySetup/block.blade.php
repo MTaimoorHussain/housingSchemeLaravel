@@ -6,15 +6,23 @@
 @section('content')
 
 <!-- Container -->
-<div class="container">
-  
   <div class="container">    
     
-    <div align="right" style="padding-top: 2% !important">
-      <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
-    </div>
+     <!-- Row -->
+     <div class="row">
+      <!-- Col-md-12 -->
+      <div class="col-md-12">
+        <div class="card mt-4">  
+  
+      <div class="card-header">
+        <div align="right" style="padding-top: 2% !important">
+          <h3 class="card-title">Blocks</h3>
+          <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
+        </div>
+      </div>
     <br />
-    <div class="table-responsive">
+    <div class="card-body table-responsive p-0">
+      <div class="container">
       <table id="user_table" class="table table-hover"">
         <thead>
           <tr>
@@ -29,6 +37,10 @@
     <br />
     <br />
   </div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
@@ -101,7 +113,6 @@
   </div>
 </div>
 
-</div>
 <!-- /.Container -->
 
 <script>
