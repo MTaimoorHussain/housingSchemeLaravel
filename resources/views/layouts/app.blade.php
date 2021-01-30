@@ -10,12 +10,17 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+<<<<<<< HEAD
     <script src="{{ asset('public/js/app.js') }}" defer></script>
+=======
+    <script src="{{ asset('js/app.js') }}" defer></script>
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+<<<<<<< HEAD
             <!-- Bootstrap -->
             {{-- <link href={{asset("public/css/bootstrap.min.css")}} rel="stylesheet"> --}}
             <!-- Font Awesome -->
@@ -35,6 +40,14 @@
 <body>
     <div id="app">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+=======
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -83,9 +96,15 @@
                     </ul>
                 </div>
             </div>
+<<<<<<< HEAD
         </nav> --}}
 
         <main class="">
+=======
+        </nav>
+
+        <main class="py-4">
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
             @yield('content')
         </main>
     </div>

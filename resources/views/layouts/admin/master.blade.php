@@ -69,7 +69,11 @@
 </style>
 </head>
 
+<<<<<<< HEAD
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+=======
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -78,6 +82,7 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+<<<<<<< HEAD
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -98,6 +103,9 @@
       </ul>
 
       
+=======
+      </ul>
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
     </nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
@@ -115,7 +123,11 @@
             <img src={{asset("public/adminlte/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
+<<<<<<< HEAD
             <a href="#" class="d-block">Alexander Pierce</a>
+=======
+            <a href="#" class="d-block">{{ucfirst(auth()->user()->name)}}</a>
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
           </div>
         </div>
 
@@ -166,21 +178,30 @@
                   </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                   <a href="plottype" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Plot Type</p>
                   </a>
                 </li>
                 <li class="nav-item">
+=======
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
                   <a href="plotcategory" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Plot Categories</p>
                   </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                   <a href="plotcategoryfee" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Plot Category Fee</p>
+=======
+                  <a href="plottype" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Plot Type</p>
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
                   </a>
                 </li>
                 <li class="nav-item">

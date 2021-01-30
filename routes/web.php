@@ -11,11 +11,16 @@
 |
 */
 
+<<<<<<< HEAD
 // Route::get('/', function () {
 // 	return view('welcome');
 // });
 Route::get('/', function () {
 	return view('layouts.website.index');
+=======
+Route::get('/', function () {
+	return view('welcome');
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
 });
 
 Auth::routes();
@@ -65,6 +70,7 @@ Route::get('block/destroy/{id}', 'BlockController@destroy');
 Route::resource('societylayoutplan','SocietyLayoutController');
 Route::post('societylayoutplan/update', 'SocietyLayoutController@update')->name('societylayoutplan.update');
 Route::get('societylayoutplan/edit/{id}', 'SocietyLayoutController@edit');
+<<<<<<< HEAD
 Route::get('societylayoutplan/destroy/{id}', 'SocietyLayoutController@destroy');
 
 
@@ -72,3 +78,6 @@ Route::resource('plotcategoryfee','PlotCategoryFeeController');
 // Route::post('plotcategoryfee/update', 'PlotCategoryFeeController@update')->name('plotcategoryfee.update');
 // Route::get('plotcategoryfee/edit/{id}', 'PlotCategoryFeeController@edit');
 // Route::get('plotcategoryfee/destroy/{id}', 'PlotCategoryFeeController@destroy');
+=======
+Route::get('societylayoutplan/destroy/{id}', 'SocietyLayoutController@destroy');
+>>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
