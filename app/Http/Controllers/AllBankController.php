@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\AllBank;
+use App\Models\Admin\AllBank;
+use App\Models\Admin\SocietyRegistration;
 use Illuminate\Http\Request;
 use DataTables;
 use Validator;

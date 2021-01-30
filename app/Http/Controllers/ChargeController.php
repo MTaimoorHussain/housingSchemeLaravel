@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PlotType;
-use App\ChargeType;
-use App\Charge;
+use App\Models\Admin\PlotType;
+use App\Models\Admin\ChargeType;
+use App\Models\Admin\Charge;
+use App\Models\Admin\SocietyRegistration;
 use Illuminate\Http\Request;
 use DataTables;
 use Validator;
@@ -22,19 +23,19 @@ class ChargeController extends Controller
         {
             $data = Charge::latest()->get();
             return DataTables::of($data)
-                    ->addColumn('action', function($data){
-                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
-                        $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
-                        return $button;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+            ->addColumn('action', function($data){
+                $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
+                $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
         }
 
         $plotTypes = PlotType::all();
         $chargeTypes = ChargeType::all();
-
-        return view('layouts.admin.societySetup.charge', compact('plotTypes','chargeTypes'));
+        $data = SocietyRegistration::first();
+        return view('layouts.admin.societySetup.charge', compact('plotTypes','chargeTypes','data'));
     }
 
     /**

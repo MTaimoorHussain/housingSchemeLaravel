@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\PlotType;
-use App\SocietyLayoutPlan;
+use App\Models\Admin\PlotType;
+use App\Models\Admin\SocietyLayoutPlan;
+use App\Models\Admin\SocietyRegistration;
 use Illuminate\Http\Request;
 use DataTables;
 use Validator;
@@ -21,18 +22,18 @@ class SocietyLayoutController extends Controller
         {
             $data = SocietyLayoutPlan::latest()->get();
             return DataTables::of($data)
-                    ->addColumn('action', function($data){
-                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
-                        $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
-                        return $button;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+            ->addColumn('action', function($data){
+                $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
+                $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
         }
 
         $plotTypes = PlotType::all();
-
-        return view('layouts.admin.societySetup.societylayoutplan', compact('plotTypes'));
+        $data = SocietyRegistration::first();
+        return view('layouts.admin.societySetup.societylayoutplan', compact('plotTypes','data'));
     }
 
     /**
