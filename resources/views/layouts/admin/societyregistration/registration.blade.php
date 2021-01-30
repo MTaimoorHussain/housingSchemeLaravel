@@ -10,7 +10,9 @@
       <div class="card-header">
         <div align="right" style="padding-top: 2% !important">
           <h3 class="card-title">Society Information</h3>
+          @if(empty($data))
           <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Registration Form</button>
+          @endif
         </div>
       </div>
       <br>

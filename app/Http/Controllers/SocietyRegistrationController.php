@@ -30,7 +30,8 @@ class SocietyRegistrationController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('layouts.admin.societyregistration.registration');
+        $data = SocietyRegistration::first();
+        return view('layouts.admin.societyregistration.registration',compact('data'));
     }
 
     /**

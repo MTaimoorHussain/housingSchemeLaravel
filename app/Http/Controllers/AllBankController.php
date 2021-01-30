@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\AllBank;
 use Illuminate\Http\Request;
+
 use DataTables;
 use Validator;
 
+use App\Models\Admin\AllBank;
+use App\Models\Admin\SocietyRegistration;
 
 class AllBankController extends Controller
 {
@@ -29,7 +31,8 @@ class AllBankController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('layouts.admin.societySetup.allbank');
+        $data = SocietyRegistration::first();
+        return view('layouts.admin.societySetup.allbank',compact('data'));
     }
 
     /**
