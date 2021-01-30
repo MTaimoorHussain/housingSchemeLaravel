@@ -73,7 +73,7 @@
 </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -82,7 +82,26 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+          </div>
+      </li>
       </ul>
+
+      
     </nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
@@ -105,7 +124,11 @@
             <img src={{asset("public/adminlte/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
+<<<<<<< HEAD
             <a href="javascript::void(0);" class="d-block">{{ucfirst(auth()->user()->name)}}</a>
+=======
+            <a href="#" class="d-block">Alexander Pierce</a>
+>>>>>>> 9cd9d180eb4d44e984f3f5ed691b72529d03b4bb
           </div>
         </div>
 
@@ -182,15 +205,21 @@
                   </a>
                 </li>
                 <li class="nav-item">
+                  <a href="plottype" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Plot Type</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="plotcategory" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Plot Categories</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="plottype" class="nav-link">
+                  <a href="plotcategoryfee" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Plot Type</p>
+                    <p>Plot Category Fee</p>
                   </a>
                 </li>
                 <li class="nav-item">

@@ -1,36 +1,44 @@
 @extends('layouts.admin.master')
-
-
-
-
 @section('content')
 
 <!-- Container -->
-<div class="container">
   
   <div class="container">    
     
-    <div align="right" style="padding-top: 2% !important">
-      <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
-    </div>
+ <!-- Row -->
+ <div class="row">
+  <!-- Col-md-12 -->
+  <div class="col-md-12">
+    <div class="card mt-4">    
+      <div class="card-header">
+        <div align="right" style="padding-top: 2% !important">
+          <h3 class="card-title">Plot Categories</h3>
+          <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
+        </div>
+      </div>
     <br />
-    <div class="table-responsive">
+    <div class="card-body table-responsive p-0">
+      <div class="container">
       <table id="user_table" class="table table-hover"">
         <thead>
           <tr>
-            <th width="20%">Plot Type</th>
-            <th width="20%">Category</th>
-            <th width="20%">Size</th>
-            <th width="20%">Unit</th>
-            <th width="20%">No. Of Plots</th>
-            <th widths="30%">Action</>
+            <th width="15%">Plot Type</th>
+            <th width="15%">Category</th>
+            <th width="15%">Size</th>
+            <th width="15%">Unit</th>
+            <th width="15%">No. Of Plots</th>
+            <th widths="20%">Action</>
           </tr>
         </thead>
       </table>
     </div>
+  </div>
     <br />
     <br />
   </div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
@@ -100,7 +108,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <div id="confirmModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
