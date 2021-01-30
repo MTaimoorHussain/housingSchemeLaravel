@@ -16,12 +16,25 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+            <!-- Bootstrap -->
+            {{-- <link href={{asset("public/css/bootstrap.min.css")}} rel="stylesheet"> --}}
+            <!-- Font Awesome -->
+            {{-- <link href={{asset("public/css/font-awesome.min.css")}} rel="stylesheet"> --}}
+            <!-- NProgress -->
+            <link href={{asset("public/css/nprogress.css")}} rel="stylesheet">
+            <!-- Animate.css -->
+            <link href={{asset("public/css/animate.min.css")}} rel="stylesheet">
+        
+            <!-- Custom Theme Style -->
+            <link href={{asset("public/css/custom.min.css")}} rel="stylesheet">
+        <!-- Styles -->
+        <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -70,9 +83,9 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
