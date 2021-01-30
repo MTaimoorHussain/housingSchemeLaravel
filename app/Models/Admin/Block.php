@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Block extends Model
 {
-    protected $fillable = [
-    	'blockName','description','plot_category'
-    ];
+	protected $fillable = [
+		'blockName','description','plot_category'
+	];
 }

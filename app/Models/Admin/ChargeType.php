@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
 class ChargeType extends Model
 {
-    protected $fillable = [
-        'chargeTypeName','description'
-    ];
+	protected $fillable = [
+		'chargeTypeName','description'
+	];
 }

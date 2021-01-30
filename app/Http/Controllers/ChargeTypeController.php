@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\ChargeType;
-use App\Models\Admin\SocietyRegistration;
 use Illuminate\Http\Request;
+
 use DataTables;
 use Validator;
+
+use App\Models\Admin\ChargeType;
+use App\Models\Admin\SocietyRegistration;
 
 class ChargeTypeController extends Controller
 {

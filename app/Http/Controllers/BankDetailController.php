@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
+use DataTables;
+use Validator;
+
 use App\Models\Admin\AllBank;
 use App\Models\Admin\BankDetail;
 use App\Models\Admin\SocietyRegistration;
-use Illuminate\Http\Request;
-use DataTables;
-use Validator;
 
 class BankDetailController extends Controller
 {

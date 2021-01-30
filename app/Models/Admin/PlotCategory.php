@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
 class PlotCategory extends Model
 {
-    protected $fillable = [
-        'plotTypeCat','CatName','catSize','catUnits','NoOfPlots','shares'
- ];
+	protected $fillable = [
+		'plotTypeCat','CatName','catSize','catUnits','NoOfPlots','shares'
+	];
 }

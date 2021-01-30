@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\PlotType;
-use App\Models\Admin\SocietyRegistration;
 use Illuminate\Http\Request;
+
 use DataTables;
 use Validator;
+
+use App\Models\Admin\PlotType;
+use App\Models\Admin\SocietyRegistration;
 
 class PlotTypeController extends Controller
 {

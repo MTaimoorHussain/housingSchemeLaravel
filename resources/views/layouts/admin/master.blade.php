@@ -73,7 +73,7 @@
 </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse">
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -84,58 +84,54 @@
         </li>
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
+            {{ Auth::user()->name }} <span class="caret"></span>
           </a>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-              </a>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
-          </div>
-      </li>
-      </ul>
-
-      
-    </nav>
-    <!-- /.navbar -->
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="javascript::void(0);" class="brand-link">
-        <img src={{asset("public/adminlte/dist/img/AdminLTELogo.png")}} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        @if(!empty($data))
-        <span class="brand-text font-weight-light" style="font-size:1.3vw;">{{ucfirst($data->name)}}</span>
-        @else
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-        @endif
-        
-      </a>
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src={{asset("public/adminlte/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-<<<<<<< HEAD
-            <a href="javascript::void(0);" class="d-block">{{ucfirst(auth()->user()->name)}}</a>
-=======
-            <a href="#" class="d-block">Alexander Pierce</a>
->>>>>>> 9cd9d180eb4d44e984f3f5ed691b72529d03b4bb
-          </div>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
         </div>
+      </li>
+    </ul>
 
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  </nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="javascript::void(0);" class="brand-link">
+      <img src={{asset("public/adminlte/dist/img/AdminLTELogo.png")}} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      @if(!empty($data))
+      <span class="brand-text font-weight-light" style="font-size:1.3vw;">{{ucfirst($data->name)}}</span>
+      @else
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      @endif
+
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src={{asset("public/adminlte/dist/img/user2-160x160.jpg")}} class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="javascript::void(0);" class="d-block">{{ucfirst(auth()->user()->name)}}</a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
 

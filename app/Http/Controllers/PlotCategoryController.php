@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
+use DataTables;
+use Validator;
+
 use App\Models\Admin\PlotType;
 use App\Models\Admin\PlotCategory;
 use App\Models\Admin\SocietyRegistration;
-use Illuminate\Http\Request;
-use DataTables;
-use Validator;
 
 class PlotCategoryController extends Controller
 {
