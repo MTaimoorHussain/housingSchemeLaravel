@@ -8,7 +8,6 @@
 <!-- Container -->
 <div class="container">
   
-<<<<<<< HEAD
   <!-- Row -->
   <div class="row">
   <!-- Col-md-12 -->
@@ -25,15 +24,6 @@
     <br />
     <div class="card-body table-responsive p-0">
       <div class="container">
-=======
-  <div class="container">    
-    
-    <div align="right" style="padding-top: 2% !important">
-      <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
-    </div>
-    <br />
-    <div class="table-responsive">
->>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
       <table id="user_table" class="table table-hover"">
         <thead>
           <tr>
@@ -52,7 +42,6 @@
         </thead>
       </table>
     </div>
-<<<<<<< HEAD
   </div>
     <br />
     <br />
@@ -60,11 +49,6 @@
 </div>
 </div>
 </div>
-=======
-    <br />
-    <br />
-  </div>
->>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
 </body>
 </html>
 
@@ -185,11 +169,6 @@
   </div>
 </div>
 
-<<<<<<< HEAD
-
-=======
-</div>
->>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
 <!-- /.Container -->
 
 <script>

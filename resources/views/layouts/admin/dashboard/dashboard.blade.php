@@ -7,7 +7,6 @@
     <div class="container-fluid">
       <!-- Info boxes -->
       <div class="row">
-<<<<<<< HEAD
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
@@ -136,71 +135,6 @@
       <!-- /.row -->
 
       {{-- <div class="row">
-=======
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">
-                10
-                <small>%</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Likes</span>
-              <span class="info-box-number">41,410</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Sales</span>
-              <span class="info-box-number">760</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">New Members</span>
-              <span class="info-box-number">2,000</span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <div class="row">
->>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
@@ -333,20 +267,12 @@
           <!-- /.card -->
         </div>
         <!-- /.col -->
-<<<<<<< HEAD
       </div> --}}
 
       <!-- /.row -->
 
       <!-- Main row -->
       {{-- <div class="row">
-=======
-      </div>
-      <!-- /.row -->
-
-      <!-- Main row -->
-      <div class="row">
->>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
         <!-- Left col -->
         <div class="col-md-12">
 
@@ -451,16 +377,11 @@
         </div>
         <!-- /.col --> 
         <!-- /.col -->
-<<<<<<< HEAD
       </div> --}}
       <!-- /.row -->
 
 
 
-=======
-      </div>
-      <!-- /.row -->
->>>>>>> 7f15a1bd7b82bd658411b577db0e02b31d009a7d
     </div>
     <!--/. container-fluid -->
   </section>
