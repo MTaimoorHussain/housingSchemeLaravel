@@ -20,6 +20,12 @@ Auth::routes();
 
 Route::resource('dashboard', 'HomeController');
 
+// Society Registration Routes (Date:29th Jan 2021)
+Route::resource('society_registration', 'SocietyRegistrationController');
+Route::post('society_registration/update', 'SocietyRegistrationController@update')->name('society_registration.update');
+Route::get('society_registration/edit/{id}', 'SocietyRegistrationController@edit');
+Route::get('society_registration/destroy/{id}', 'SocietyRegistrationController@destroy');
+
 Route::resource('allbank', 'AllBankController');
 Route::post('allbank/update', 'AllBankController@update')->name('allbank.update');
 Route::get('allbank/edit/{id}', 'AllBankController@edit');

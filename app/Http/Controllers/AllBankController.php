@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\AllBank;
 use Illuminate\Http\Request;
+
 use DataTables;
 use Validator;
 
+use App\Models\Admin\AllBank;
+use App\Models\Admin\SocietyRegistration;
 
 class AllBankController extends Controller
 {
@@ -21,15 +23,16 @@ class AllBankController extends Controller
         {
             $data = AllBank::latest()->get();
             return DataTables::of($data)
-                    ->addColumn('action', function($data){
-                        $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
-                        $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
-                        return $button;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+            ->addColumn('action', function($data){
+                $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
+                $button .= '<button type="button" name="edit" id="'.$data->id.'" class="delete action" style="background: none; outline: none; border: none; color: blue; padding-left: 0%;"><i class="fa fa-trash"></i></button>';
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
         }
-        return view('layouts.admin.societySetup.allbank');
+        $data = SocietyRegistration::first();
+        return view('layouts.admin.societySetup.allbank',compact('data'));
     }
 
     /**

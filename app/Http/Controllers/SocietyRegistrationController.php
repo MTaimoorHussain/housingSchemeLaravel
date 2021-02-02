@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DataTables;
 use Validator;
+use DataTables;
 
-use App\Models\Admin\PlotType;
 use App\Models\Admin\SocietyRegistration;
 
-class PlotTypeController extends Controller
+class SocietyRegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class PlotTypeController extends Controller
     {
         if($request->ajax())
         {
-            $data = PlotType::latest()->get();
+            $data = SocietyRegistration::latest()->get();
             return DataTables::of($data)
             ->addColumn('action', function($data){
                 $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
@@ -32,7 +31,7 @@ class PlotTypeController extends Controller
             ->make(true);
         }
         $data = SocietyRegistration::first();
-        return view('layouts.admin.societySetup.plottype',compact('data'));
+        return view('layouts.admin.societyregistration.registration',compact('data'));
     }
 
     /**
@@ -53,24 +52,7 @@ class PlotTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'plotType'    =>  'required',
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        $form_data = array(
-            'plotType'        =>  $request->plotType,
-        );
-
-        PlotType::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
+        //
     }
 
     /**
@@ -92,11 +74,7 @@ class PlotTypeController extends Controller
      */
     public function edit($id)
     {
-        if(request()->ajax())
-        {
-            $data = PlotType::findOrFail($id);
-            return response()->json(['result' => $data]);
-        }
+        //
     }
 
     /**
@@ -106,26 +84,9 @@ class PlotTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $rules = array(
-            'plotType'        =>  'required',
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        $form_data = array(
-            'plotType'    =>  $request->plotType,
-        );
-
-        PlotType::whereId($request->hidden_id)->update($form_data);
-
-        return response()->json(['success' => 'Data is successfully updated']);
+        //
     }
 
     /**
@@ -136,7 +97,6 @@ class PlotTypeController extends Controller
      */
     public function destroy($id)
     {
-        $data = PlotType::findOrFail($id);
-        $data->delete();
+        //
     }
 }
