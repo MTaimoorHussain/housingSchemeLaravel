@@ -47,6 +47,7 @@ Route::resource('plottype','PlotTypeController');
 Route::post('plottype/update', 'PlotTypeController@update')->name('plottype.update');
 Route::get('plottype/edit/{id}', 'PlotTypeController@edit');
 Route::get('plottype/destroy/{id}', 'PlotTypeController@destroy');
+Route::post('get_total_society_plots', 'PlotTypeController@get_total_society_plots')->name('get_total_society_plots');
 
 Route::resource('tender','TenderController');
 Route::post('tender/update', 'TenderController@update')->name('tender.update');
@@ -57,6 +58,7 @@ Route::resource('plotcategory','PlotCategoryController');
 Route::post('plotcategory/update', 'PlotCategoryController@update')->name('plotcategory.update');
 Route::get('plotcategory/edit/{id}', 'PlotCategoryController@edit');
 Route::get('plotcategory/destroy/{id}', 'PlotCategoryController@destroy');
+Route::post('get_total_plots_of_plot_type', 'PlotCategoryController@get_total_plots_of_plot_type')->name('get_total_plots_of_plot_type');
 
 Route::resource('charge','ChargeController');
 Route::post('charge/update', 'ChargeController@update')->name('charge.update');

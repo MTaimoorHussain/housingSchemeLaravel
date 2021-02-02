@@ -22,7 +22,7 @@ class PlotCategoryController extends Controller
     {
         if($request->ajax())
         {
-            $data = PlotCategory::latest()->get();
+            $data = PlotCategory::with('plot_type_name')->get();
             return DataTables::of($data)
             ->addColumn('action', function($data){
                 $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit action" style="background: none; outline: none; border: none; color: blue;"><i class="fa fa-edit"></i>  /</button>';
@@ -33,9 +33,9 @@ class PlotCategoryController extends Controller
             ->make(true);
         }
 
-        $plotTypes = PlotType::all();
+        $plot_types = PlotType::all();
         $data = SocietyRegistration::first();
-        return view('layouts.admin.societySetup.plotcategory', compact('plotTypes','data'));
+        return view('layouts.admin.societySetup.plotcategory', compact('plot_types','data'));
     }
 
     /**
@@ -56,32 +56,43 @@ class PlotCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $rules = array(
-            'plotTypeCat'    =>  'required',
-            'CatName'     =>  'required',
-            'catSize'    =>  'required',
-            'catUnits'    =>  'required',
-            'NoOfPlots'    =>  'required',
+            'plot_type_id' => 'required',
+            'name' => 'required',
+            'area' => 'required',
+            'no_of_plots' => 'required',
         );
-
-        $error = Validator::make($request->all(), $rules);
-
+        $messages = array(
+            'plot_type_id.required' => 'The Plot type field is required.',
+            'name.required' => 'The category name field is required.',
+            'area.required' => 'The area field is required.',
+            'no_of_plots.required' => 'The total no. of plots field is required.'
+        );
+        $error = Validator::make($request->all(), $rules, $messages);
         if($error->fails())
         {
             return response()->json(['errors' => $error->errors()->all()]);
         }
-
         $form_data = array(
-            'plotTypeCat'        =>  $request->plotTypeCat,
-            'CatName'         =>  $request->CatName,
-            'catSize'        =>  $request->catSize,
-            'catUnits'        =>  $request->catUnits,
-            'NoOfPlots'        =>  $request->NoOfPlots
+            'plot_type_id' => $request->plot_type_id,
+            'name' => $request->name,
+            'area' => $request->area,
+            'no_of_plots' => $request->no_of_plots,
         );
-
         PlotCategory::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
+        $prev_alloted_plot = PlotType::where('id',$request->plot_type_id)->first();
+        if(!empty($prev_alloted_plot))
+        {
+            PlotType::where('id',$request->plot_type_id)
+            ->update(
+                [
+                    'remaining_plots' => $request->remaining_plots,
+                    'alloted_plots' => $request->no_of_plots + $prev_alloted_plot->alloted_plots
+                ]
+            );
+        }
+        return response()->json(['added' => 'Data successfully added.']);
     }
 
     /**
@@ -106,7 +117,8 @@ class PlotCategoryController extends Controller
         if(request()->ajax())
         {
             $data = PlotCategory::findOrFail($id);
-            return response()->json(['result' => $data]);
+            $prev_alloted_plot = PlotType::where('id',$data->plot_type_id)->first();
+            return response()->json(['result' => $data, 'prev_alloted_plot' => $prev_alloted_plot]);
         }
     }
 
@@ -144,7 +156,7 @@ class PlotCategoryController extends Controller
 
         PlotCategory::whereId($request->hidden_id)->update($form_data);
 
-        return response()->json(['success' => 'Data is successfully updated']);
+        return response()->json(['updated' => 'Data is successfully updated']);
     }
 
     /**
@@ -155,7 +167,21 @@ class PlotCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = PlotCategory::findOrFail($id);
-        $data->delete();
+        $data = PlotCategory::findOrFail($id)->delete();
+    }
+
+    /**
+     * Custom function to overview the roster from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_total_plots_of_plot_type(Request $request)
+    {   
+        $total_plots = PlotType::where('id',$request->plot_type_id)
+        ->select('*')
+        ->orderBy('id','ASC')
+        ->get();
+        return response()->json($total_plots, 200);
     }
 }

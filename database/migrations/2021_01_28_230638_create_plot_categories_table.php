@@ -15,12 +15,12 @@ class CreatePlotCategoriesTable extends Migration
     {
         Schema::create('plot_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('plotTypeCat');
-            $table->string('CatName');
-            $table->string('catSize');
-            $table->string('catUnits');
-            $table->bigInteger('NoOfPlots');
-            $table->integer('shares')->default(1);            
+            $table->string('plot_type_id');
+            $table->string('name');
+            $table->string('area');
+            $table->integer('no_of_plots')->default(0);
+            $table->integer('remaining_plots')->default(0);
+            $table->integer('alloted_plots')->default(0);
             $table->timestamps();
         });
     }

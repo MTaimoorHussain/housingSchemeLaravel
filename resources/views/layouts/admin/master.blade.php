@@ -131,10 +131,10 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
             <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-
+             
              <li class="nav-item">
               <a href="dashboard" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt color-gray"></i>
@@ -142,7 +142,9 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            @if(Request::segment(1) == "society_registration")
+            <!--             
+            <li class="nav-item open">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-registered"></i>
                 <p>
@@ -151,23 +153,28 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="society_registration" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registration</p>
-                  </a>
-                </li>
+              -->                
+              <li class="nav-item">
+                <a href="society_registration" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Society Registration</p>
+                </a>
+              </li>
 
-                <li class="nav-item">
-                  <a href="society_registration" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Document uploader</p>
-                  </a>
-                </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Document Uploader</p>
+                </a>
+              </li>
+              <!--          
               </ul>
-            </li>
+              </li> 
+            -->
+            @endif
 
-            <li class="nav-item">
+            @if(Request::segment(1) == "plottype" || Request::segment(1) == "plotcategory" || Request::segment(1) == "plotcategoryfee" || Request::segment(1) == "block" || Request::segment(1) == "charge" || Request::segment(1) == "chargetype" || Request::segment(1) == "societylayoutplan" || Request::segment(1) == "allbank" || Request::segment(1) == "bankdetail")
+            <!-- <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-cubes"></i>
                 <p>
@@ -176,62 +183,77 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="allbank" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Banks Listing</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="bankdetail" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Society Banks</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="chargetype" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Charges Listing</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="charge" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Society Charges</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="plottype" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Plot Type</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="plotcategory" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Plot Categories</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="plotcategoryfee" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Plot Category Fee</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="block" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Blocks</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="societylayoutplan" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Society layout Plan</p>
-                  </a>
-                </li>
+              -->
+              <li class="nav-item">
+                <a href="plottype" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Plot Type</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="plotcategory" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Plot Categories</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="plotcategoryfee" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Plot Category Fee</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="block" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Blocks</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="charge" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Society Charges</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="chargetype" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Charges Listing</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="societylayoutplan" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Society layout Plan</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="allbank" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Banks Listing</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="bankdetail" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Society Banks</p>
+                </a>
+              </li>
+              <!--               
               </ul>
-            </li>
+            </li> 
+          -->
+          @endif
+
+          @if(Request::segment(1) == "tender")
+          <!--        
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-file"></i>
@@ -241,14 +263,18 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="tender" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Tender</p>
-                  </a>
-                </li>
+              -->           
+              <li class="nav-item">
+                <a href="tender" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tender</p>
+                </a>
+              </li>
+              <!--
               </ul>
-            </li>
+              </li> 
+            -->
+            @endif
 
           </ul>
         </nav>

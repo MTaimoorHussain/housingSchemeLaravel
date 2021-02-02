@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SocietyRegistration extends Model
 {
 	protected $fillable = [
-		'name','slug','address','registration_no','registration_date','country_id','state_id','city_id',
+		'name','slug','address','registration_no','registration_date','country_id','state_id','city_id','total_society_plots','total_alloted_area_sq','total_alloted_area_acre'
 	];
 
 	/**
@@ -19,7 +19,7 @@ class SocietyRegistration extends Model
 	}
 
     /**
-     * Get the phone record associated with the user.
+     * Get the state record associated with the state.
      */
     public function state()
     {
@@ -27,7 +27,7 @@ class SocietyRegistration extends Model
     }
 
     /**
-     * Get the phone record associated with the user.
+     * Get the city record associated with the city.
      */
     public function city()
     {

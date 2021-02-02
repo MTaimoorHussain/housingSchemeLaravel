@@ -18,11 +18,16 @@ class CreateSocietyRegistrationsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('address');
-            $table->string('registration_no');
+            $table->string('registration_no')->default(0);
             $table->date('registration_date');
             $table->integer('country_id');
             $table->integer('state_id');
             $table->integer('city_id');
+            $table->integer('total_society_plots')->default(0);
+            $table->integer('remaining_society_plots')->default(0);
+            $table->integer('alloted_society_plots_in_plot_type')->default(0);
+            $table->integer('total_alloted_area_sq')->default(0);
+            $table->integer('total_alloted_area_acre')->default(0);
             $table->timestamps();
         });
     }

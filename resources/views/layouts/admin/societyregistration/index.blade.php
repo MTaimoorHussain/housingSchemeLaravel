@@ -72,17 +72,6 @@
           </div>
 
           <div class="CarryInput" style="display: flex;">
-            <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="text" name="registration_no" id="registration_no" class="form-control input" required=""/>
-              <label for="registration_no" id="label">Registration No#</label>
-            </div>
-
-            <div class="input-field col-md-6 col-sm-6 col-lg-6">
-              <input type="date" name="registration_date" id="registration_date" class="form-control input" required=""/>
-            </div>
-          </div>
-
-          <div class="CarryInput" style="display: flex;">
             <div class="input-field col-md-4 col-sm-4 col-lg-4">
               <select type="text" name="country" id="country" class="form-control input" required="">
                 <option value="" selected="" disabled="">Select Country</option>
@@ -103,6 +92,34 @@
                 <option value="" selected="" disabled="">Select City</option>
               </select>
             </div>
+          </div>
+
+          <div class="CarryInput" style="display: flex;">
+            <div class="input-field col-md-6 col-sm-6 col-lg-6">
+              <input type="text" name="registration_no" id="registration_no" class="form-control input" required=""/>
+              <label for="registration_no" id="label">Registration No# By Board Of Revenue (If any)</label>
+            </div>
+
+            <div class="input-field col-md-6 col-sm-6 col-lg-6">
+              <input type="date" name="registration_date" id="registration_date" class="form-control input" required=""/>
+            </div>
+          </div>
+
+          <div class="CarryInput" style="display: flex;">
+
+            <div class="input-field col-md-4 col-sm-4 col-lg-4">
+              <input type="number" name="total_society_plots" id="total_society_plots" class="form-control input" required="">
+              <label for="total_society_plots" id="label">Total Society Plots</label>
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4">
+              <input type="text" name="total_alloted_area_sq" id="total_alloted_area_sq" class="form-control input" required="">
+              <label for="total_alloted_area_sq" id="label">Total Alloted Area (ACRES)</label>
+            </div>
+            <div class="input-field col-md-4 col-sm-4 col-lg-4">
+              <input type="number" name="total_alloted_area_acre" id="total_alloted_area_acre" class="form-control input" required="">
+              <label for="total_alloted_area_acre" id="label">Total Alloted Area (SQY)</label>
+            </div>
+
           </div>
 
           <br />
@@ -181,7 +198,7 @@
     );
     $('#create_record').click(function()
     {
-      $('#name').val('');
+      $('#registration_form')[0].reset();
       $('.modal-title').text('Add Society Information');
       $('#action_button').val('Submit');
       $('#action').val('Add');
@@ -260,7 +277,14 @@
           $('#address').val(data.result.address);
           $('#registration_no').val(data.result.registration_no);
           $('#registration_date').val(data.result.registration_date);
-          // $('#country').val(data.result.country_id);
+          $('#country').val(data.result.country_id);
+          $('#country').change();
+          $('select[name="state"]').data('selected', data.result.state_id);
+          $('#state').change();
+          $('select[name="city"]').data('selected', data.result.city_id);
+          $('#total_society_plots').val(data.result.total_society_plots);
+          $('#total_alloted_area_sq').val(data.result.total_alloted_area_sq);
+          $('#total_alloted_area_acre').val(data.result.total_alloted_area_acre);
           $('#hidden_id').val(id);
           $('.modal-title').text('Edit Society Information');
           $('#action_button').val('Update');
@@ -324,10 +348,13 @@
         {
           $("#state").empty();
           $("#state").append("<option value='' disabled='' selected=''>Select State</option>");
-
-          $.each(response, function(index, obj){
-            $("#state").append("<option value="+response[index].id+">"+response[index].name+"</option>");
-          });
+          for($i = 0; $i < response.length; $i++){
+            $("#state").append("<option value="+response[$i].id+">"+response[$i].name+"</option>");
+          }
+          let selected = $('select[name="state"]').data('selected');
+          if( selected != '' ) {
+            $('select[name="state"]').val(selected).trigger('change');
+          }
         }
       });
 
@@ -348,10 +375,13 @@
         {
           $("#city").empty();
           $("#city").append("<option value='' disabled='' selected=''>Select City</option>");
-
-          $.each(response, function(index, obj){
-            $("#city").append("<option value="+response[index].id+">"+response[index].name+"</option>");
-          });
+          for($i = 0; $i < response.length; $i++){
+            $("#city").append("<option value="+response[$i].id+">"+response[$i].name+"</option>");
+          }
+          let selected = $('select[name="city"]').data('selected');
+          if( selected != '' ) {
+            $('select[name="city"]').val(selected).trigger('change');
+          }
         }
       });
 

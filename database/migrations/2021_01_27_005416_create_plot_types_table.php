@@ -15,7 +15,11 @@ class CreatePlotTypesTable extends Migration
     {
         Schema::create('plot_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('plotType');
+            $table->integer('society_id');
+            $table->string('name');
+            $table->integer('total_plots')->default(0);
+            $table->integer('remaining_plots')->default(0);
+            $table->integer('alloted_plots')->default(0);
             $table->timestamps();
         });
     }

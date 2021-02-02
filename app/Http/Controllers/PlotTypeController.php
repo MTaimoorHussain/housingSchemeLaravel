@@ -53,24 +53,40 @@ class PlotTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'plotType'    =>  'required',
+        $rules = [
+            'society_id' => 'required',
+            'plot_type_name' => 'required',
+            'total_plots' => 'required',
+        ];
+        $messages = array(
+            'society_id.required' => 'The society name field is required.',
+            'plot_type_name.required' => 'The plot name field is required.',
+            'total_plots.required' => 'The total plots field is required.'
         );
-
-        $error = Validator::make($request->all(), $rules);
+        $error = Validator::make($request->all(), $rules, $messages);
 
         if($error->fails())
         {
             return response()->json(['errors' => $error->errors()->all()]);
         }
-
         $form_data = array(
-            'plotType'        =>  $request->plotType,
+            'society_id' => $request->society_id,
+            'name' => $request->plot_type_name,
+            'total_plots' => $request->total_plots,
         );
-
         PlotType::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
+        $last_alloted_as_plot_type = SocietyRegistration::where('id',$request->society_id)->first();
+        if(!empty($last_alloted_as_plot_type))
+        {
+            SocietyRegistration::where('id',$request->society_id)
+            ->update(
+                [
+                    'remaining_society_plots' => $request->total_remaining_plots,
+                    'alloted_society_plots_in_plot_type' => $request->total_plots + $last_alloted_as_plot_type->alloted_society_plots_in_plot_type
+                ]
+            );
+        }
+        return response()->json(['added' => 'Data successfully added.']);
     }
 
     /**
@@ -95,7 +111,8 @@ class PlotTypeController extends Controller
         if(request()->ajax())
         {
             $data = PlotType::findOrFail($id);
-            return response()->json(['result' => $data]);
+            $last_alloted_as_plot_type = SocietyRegistration::where('id',$data->society_id)->first();
+            return response()->json(['result' => $data, 'last_alloted_as_plot_type' => $last_alloted_as_plot_type]);
         }
     }
 
@@ -108,23 +125,39 @@ class PlotTypeController extends Controller
      */
     public function update(Request $request)
     {
-        $rules = array(
-            'plotType'        =>  'required',
+        $rules = [
+            'society_id' => 'required',
+            'plot_type_name' => 'required',
+            'total_plots' => 'required',
+        ];
+        $messages = array(
+            'society_id.required' => 'The society name field is required.',
+            'plot_type_name.required' => 'The plot name field is required.',
+            'total_plots.required' => 'The total plots field is required.'
         );
-
-        $error = Validator::make($request->all(), $rules);
-
+        $error = Validator::make($request->all(), $rules, $messages);
         if($error->fails())
         {
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
         $form_data = array(
-            'plotType'    =>  $request->plotType,
+            'society_id' => $request->society_id,
+            'name' => $request->plot_type_name,
+            'total_plots' => $request->total_plots,
         );
-
         PlotType::whereId($request->hidden_id)->update($form_data);
-
+        $last_alloted_as_plot_type = SocietyRegistration::where('id',$request->society_id)->first();
+        if(!empty($last_alloted_as_plot_type))
+        {
+            SocietyRegistration::where('id',$request->society_id)
+            ->update(
+                [
+                    'remaining_society_plots' => $request->total_remaining_plots,
+                    'alloted_society_plots_in_plot_type' => $request->total_plots + $last_alloted_as_plot_type->alloted_society_plots_in_plot_type
+                ]
+            );
+        }
         return response()->json(['success' => 'Data is successfully updated']);
     }
 
@@ -138,5 +171,20 @@ class PlotTypeController extends Controller
     {
         $data = PlotType::findOrFail($id);
         $data->delete();
+    }
+
+    /**
+     * Custom function to overview the roster from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get_total_society_plots(Request $request)
+    {   
+        $total_society_plots = SocietyRegistration::where('id',$request->society_id)
+        ->select('*')
+        ->orderBy('id','ASC')
+        ->get();
+        return response()->json($total_society_plots, 200);
     }
 }

@@ -64,7 +64,10 @@ class SocietyRegistrationController extends Controller
             'registration_date' => 'required',
             'country' => 'required',
             'state' => 'required',
-            'city' => 'required'
+            'city' => 'required',
+            'total_society_plots' => 'required',
+            'total_alloted_area_sq' => 'required',
+            'total_alloted_area_acre' => 'required'
         ];
         $messages = array(
             'name.required' => 'The name field is required.',
@@ -75,6 +78,9 @@ class SocietyRegistrationController extends Controller
             'country.required' => 'The country field is required.',
             'state.required' => 'The state field is required.',
             'city.required' => 'The city field is required.',
+            'total_society_plots.required' => 'The society plots field is required.',
+            'total_alloted_area_sq.required' => 'The alloted area sq. yards field is required.',
+            'total_alloted_area_acre.required' => 'The alloted area acre field is required.'
         );
         $error = Validator::make($request->all(), $rules, $messages);
         if($error->fails())
@@ -89,7 +95,10 @@ class SocietyRegistrationController extends Controller
             'registration_date' => $request->registration_date,
             'country_id' => $request->country,
             'state_id' => $request->state,
-            'city_id' => $request->city
+            'city_id' => $request->city,
+            'total_society_plots' => $request->total_society_plots,
+            'total_alloted_area_sq' => $request->total_alloted_area_sq,
+            'total_alloted_area_acre' => $request->total_alloted_area_acre
         ];
         SocietyRegistration::create($form_data);
         return response()->json(['added' => 'Data successfully added.']);
@@ -117,7 +126,16 @@ class SocietyRegistrationController extends Controller
         if(request()->ajax())
         {
             $data = SocietyRegistration::findOrFail($id);
-            return response()->json(['result' => $data]);
+            $country = Country::select('*')
+            ->orderBy('id','ASC')
+            ->get();
+            $state = State::select('*')
+            ->orderBy('id','ASC')
+            ->get();
+            $city = City::select('*')
+            ->orderBy('id','ASC')
+            ->get();
+            return response()->json(['result' => $data, 'country' => $country, 'state' => $state, 'city' => $city]);
         }
     }
 
@@ -138,7 +156,10 @@ class SocietyRegistrationController extends Controller
             'registration_date' => 'required',
             'country' => 'required',
             'state' => 'required',
-            'city' => 'required'
+            'city' => 'required',
+            'total_society_plots' => 'required',
+            'total_alloted_area_sq' => 'required',
+            'total_alloted_area_acre' => 'required'
         ];
         $messages = array(
             'name.required' => 'The name field is required.',
@@ -149,6 +170,9 @@ class SocietyRegistrationController extends Controller
             'country.required' => 'The country field is required.',
             'state.required' => 'The state field is required.',
             'city.required' => 'The city field is required.',
+            'total_society_plots.required' => 'The society plots field is required.',
+            'total_alloted_area_sq.required' => 'The alloted area sq. yards field is required.',
+            'total_alloted_area_acre.required' => 'The alloted area acre field is required.'
         );
         $error = Validator::make($request->all(), $rules, $messages);
         if($error->fails())
@@ -163,7 +187,10 @@ class SocietyRegistrationController extends Controller
             'registration_date' => $request->registration_date,
             'country_id' => $request->country,
             'state_id' => $request->state,
-            'city_id' => $request->city
+            'city_id' => $request->city,
+            'total_society_plots' => $request->total_society_plots,
+            'total_alloted_area_sq' => $request->total_alloted_area_sq,
+            'total_alloted_area_acre' => $request->total_alloted_area_acre
         ];
         SocietyRegistration::whereId($request->hidden_id)->update($form_data);
         return response()->json(['updated' => 'Data successfully updated']);
