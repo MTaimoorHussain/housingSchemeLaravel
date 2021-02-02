@@ -59,7 +59,7 @@
       margin-top:7%;
     }
     .CarryInput{
-     margin-top: 4%;
+     margin-top: 2%;
    }
    .paginate_button{
     background: #28a745;
@@ -214,7 +214,23 @@
                 </li>
               </ul>
             </li>
-
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-file"></i>
+                <p>
+                  Membership Management
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="allotment" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Allotment</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

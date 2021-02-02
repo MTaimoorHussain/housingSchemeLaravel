@@ -64,3 +64,10 @@ Route::resource('societylayoutplan','SocietyLayoutController');
 Route::post('societylayoutplan/update', 'SocietyLayoutController@update')->name('societylayoutplan.update');
 Route::get('societylayoutplan/edit/{id}', 'SocietyLayoutController@edit');
 Route::get('societylayoutplan/destroy/{id}', 'SocietyLayoutController@destroy');
+
+Route::resource('allotment','AllotmentController');
+Route::post('allotment/update', 'AllotmentController@update')->name('allotment.update');
+Route::get('allotment/edit/{id}', 'AllotmentController@edit');
+Route::get('allotment/destroy/{id}', 'AllotmentController@destroy');
+
+
